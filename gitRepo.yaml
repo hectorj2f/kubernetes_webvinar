@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: gitrepo
+spec:
+  containers:
+  - image: busybox
+    name: gitrepo
+    command:
+     - sleep
+     - "3400"
+    volumeMounts:
+    - mountPath: /tmp
+      name: git-volume
+  volumes:
+  - name: git-volume
+    gitRepo:
+      repository: https://github.com/giantswarm/nomi.git
+      revision: master
